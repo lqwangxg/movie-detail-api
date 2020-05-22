@@ -51,8 +51,6 @@ server.post('/movie', function(req, res){
           req.body.queryResult.fulfillmentText = dataToSend;
           //req.body.queryResult.fulfillmentMessages.text.text = dataToSend;
           
-          console.log(`💫💫💫call webhook succeed.💫💫💫`);
-          
           return res.json({
               speech: dataToSend,
               displayText: dataToSend,
