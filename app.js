@@ -48,7 +48,11 @@ server.post('/movie', function(req, res){
           const movie = JSON.parse(completeResponse);
           let dataToSend = movieTitle === 'The Godfather' ? `I don't have the required info on that. Here's some info on 'The Godfather' instead.\n` : '';
           dataToSend += `${movie.Title} is a ${movie.Actors} starer ${movie.Genre} movie, released in ${movie.Year}. It was directed by ${movie.Director}`;
-
+          req.body.queryResult.fulfillmentText = dataToSend;
+          req.body.queryResult.fulfillmentMessages.text.text = dataToSend;
+          
+          console.log(`💫💫💫call webhook succeed.💫💫💫`);
+          
           return res.json({
               speech: dataToSend,
               displayText: dataToSend,
