@@ -30,6 +30,8 @@ server.post('/api/movie/',function(req,res){
 
 server.post('/movie', function(req, res){
 
+    console.log(' req.body:', req.body);
+
     const movieTitle = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';
     const reqUrl = encodeURI(`http://www.omdbapi.com/?t=${movieTitle}&apikey=${API_KEY}`);
     console.log('movieTitle:', movieTitle, 'reqUrl:', reqUrl);
