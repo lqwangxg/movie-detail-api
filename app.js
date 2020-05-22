@@ -27,7 +27,7 @@ server.post('/api/movie/',function(req,res){
         "movie title":movieTitle
     });
 });
-/*
+
 server.post('/movie', function(req, res){
 
     const movieTitle = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';
@@ -58,7 +58,7 @@ server.post('/movie', function(req, res){
       });
     });
 });
-*/
+
 var port = process.env.PORT || 8080;
 //=========================================
 server.listen(port, () => {
