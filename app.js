@@ -27,7 +27,7 @@ server.post('/api/movie/',function(req,res){
         "movie title":movieTitle
     });
 });
-
+/*
 server.post('/movie', function(req, res){
 
     const movieTitle = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';
@@ -50,14 +50,15 @@ server.post('/movie', function(req, res){
               source: 'movie'
           });
       });
-  }, (error) => {
+    }, (error) => {
       return res.json({
           speech: 'Something went wrong!',
           displayText: 'Something went wrong!',
           source: 'movie'
       });
-  });
+    });
 });
+*/
 var port = process.env.PORT || 8080;
 //=========================================
 server.listen(port, () => {
