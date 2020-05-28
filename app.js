@@ -124,11 +124,10 @@ server.post('/webhook', line.middleware(config), (req, res) => {
 });
 
 server.post('/movie', function(req, res){
-
+    console.log(' req:', req);
     console.log(' req.body:', req.body);
-    const jsonBody = res.json(req.body);
-    const outputContexts = jsonBody.queryResult.outputContexts? jsonBody.queryResult.outputContexts: [[]];
-    console.log(' outputContexts:', outputContexts);
+    const queryResult =req.body.queryResult ;
+    console.log(' queryResult:', queryResult);
     
     const movieTitle = req.body.queryResult 
         && req.body.queryResult.parameters 
