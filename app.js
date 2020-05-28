@@ -126,6 +126,7 @@ server.post('/webhook', line.middleware(config), (req, res) => {
 server.post('/movie', function(req, res){
 
     console.log(' req.body:', req.body);
+    const jsonBody = res.json(req.body);
 
     const movieTitle = req.body.queryResult 
         && req.body.queryResult.parameters 
@@ -147,8 +148,52 @@ server.post('/movie', function(req, res){
           return res.json({
               speech: dataToSend,
               displayText: dataToSend,
-              source: 'movie'
-          });
+              source: movie.Ratings[0].source,
+              "fulfillmentText": dataToSend,
+              "fulfillmentMessages": [
+                {
+                  "card": {
+                    "title": movie.Title,
+                    "subtitle": movie.Genre,
+                    "imageUri": movie.Poster,
+                    "buttons": [
+                      {
+                        "text": "click me",
+                        "postback": "https://m.media-amazon.com"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "source": "https://m.media-amazon.com",
+              "payload": {
+                "google": {
+                  "expectUserResponse": true,
+                  "richResponse": {
+                    "items": [
+                      {
+                        "simpleResponse": {
+                          "textToSpeech": dataToSend
+                        }
+                      }
+                    ]
+                  }
+                },
+                "facebook": {
+                  "text": dataToSend
+                },
+                "slack": {
+                  "text": dataToSend
+                }
+              },
+              "outputContexts": jsonBody.queryResult.outputContexts,
+              "followupEventInput": {
+                "name": "",
+                "languageCode": "en-US",
+                "parameters": {}
+              }
+            }
+          );
       });
     }, (error) => {
       return res.json({
