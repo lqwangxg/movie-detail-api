@@ -127,7 +127,9 @@ server.post('/movie', function(req, res){
 
     console.log(' req.body:', req.body);
     const jsonBody = res.json(req.body);
-
+    const outputContexts = jsonBody.queryResult.outputContexts? jsonBody.queryResult.outputContexts: [[]];
+    console.log(' outputContexts:', outputContexts);
+    
     const movieTitle = req.body.queryResult 
         && req.body.queryResult.parameters 
         && req.body.queryResult.parameters.movie ? req.body.queryResult.parameters.movie.toString() : 'The Godfather';
@@ -186,7 +188,7 @@ server.post('/movie', function(req, res){
                   "text": dataToSend
                 }
               },
-              "outputContexts": jsonBody.queryResult.outputContexts,
+              "outputContexts": outputContexts,
               "followupEventInput": {
                 "name": "",
                 "languageCode": "en-US",
