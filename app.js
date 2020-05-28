@@ -187,7 +187,7 @@ server.post('/movie', function(req, res){
                   "text": dataToSend
                 }
               },
-              "outputContexts": outputContexts,
+              //"outputContexts": outputContexts,
               "followupEventInput": {
                 "name": "",
                 "languageCode": "en-US",
