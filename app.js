@@ -195,6 +195,24 @@ server.post('/movie', function(req, res){
                     ]
                   }
                 },
+                "line": {
+                  "type": "text",
+                  "packageId": "11537",
+                  "stickerId": "52002773",
+                  "text": dataToSend,
+                  "emojis": [
+                    {
+                      "index": 0,
+                      "productId": "5ac1bfd5040ab15980c9b435",
+                      "emojiId": "001"
+                    },
+                    {
+                      "index": 13,
+                      "productId": "5ac1bfd5040ab15980c9b435",
+                      "emojiId": "002"
+                    }
+                  ],
+                },
                 "facebook": {
                   "text": dataToSend
                 },
