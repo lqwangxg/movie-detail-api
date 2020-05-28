@@ -124,7 +124,7 @@ server.post('/webhook', line.middleware(config), (req, res) => {
 });
 
 server.post('/movie', function(req, res){
-    console.log(' req:', req);
+    //console.log(' req:', req);
     console.log(' req.body:', req.body);
     const queryResult =req.body.queryResult ;
     console.log(' queryResult:', queryResult);
@@ -168,6 +168,21 @@ server.post('/movie', function(req, res){
               ],
               "source": "https://m.media-amazon.com",
               "payload": {
+                "richContent": [
+                  [
+                    {
+                      "type": "info",
+                      "title": movie.Title,
+                      "subtitle": movie.Genre,
+                      "image": {
+                        "src": {
+                          "rawUrl": movie.Poster
+                        }
+                      },
+                      "actionLink": "https://m.media-amazon.com"
+                    }
+                  ]
+                ],
                 "google": {
                   "expectUserResponse": true,
                   "richResponse": {
@@ -187,7 +202,7 @@ server.post('/movie', function(req, res){
                   "text": dataToSend
                 }
               },
-              //"outputContexts": outputContexts,
+              "outputContexts": req.body.queryResult.outputContexts,
               "followupEventInput": {
                 "name": "",
                 "languageCode": "en-US",
